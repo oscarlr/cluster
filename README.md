@@ -12,6 +12,7 @@ Here's an example of using `cluster`
 
 ```
 from lsf.lsf import Lsf
+
 def submit_jobs(samples,cluster,walltime,core,mem,queue,wait=True):
     jobs = []
     for sample in samples:
@@ -35,3 +36,5 @@ def submit_jobs(samples,cluster,walltime,core,mem,queue,wait=True):
     if wait:
         hpc.wait()
 ```
+
+In `submit_jobs` I create a list and add to this list file paths that point to bash scripts. Then I create an instance of Lsf() and used the function config from the instance to configure the job parameters, and then pass the file path of the bash script to the submit function from the instance. After all the jobs are submitted I call the function wait to wait until all the jobs are done.
