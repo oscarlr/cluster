@@ -1,7 +1,7 @@
 # cluster
 I usually end up writing python code that requires submitting jobs into the cluster and waiting for those jobs to finish in order to continue. So I created this code `cluster` that does that. 
 
-In order to use it, first download and install the `cluster`.
+In order to use it, first download and install `cluster`.
 
 ```
 git clone https://github.com/oscarlr/cluster
