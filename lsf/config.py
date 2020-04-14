@@ -4,7 +4,7 @@ from os import makedirs,environ
 from os.path import exists
 
 ### USER DEFINED VARIABLES
-SCRATCH_DIR="/sc/orga/scratch"
+SCRATCH_DIR="/sc/hydra/scratch"
 WALLTIME = 24
 CPU = 1
 MEM = 4
