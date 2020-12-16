@@ -92,9 +92,9 @@ class Lsf:
         self.signals = None
         self.failed_bashes = None
         self.hpc_type = None
-        if which('bsub') not None:
+        if which('bsub') is not None:
             self.hpc_type = "lsf"
-        if which('srun') not None:
+        if which('srun') is not None:
             self.hpc_type = "slurm"
 
     def config(self,outdir=OUTDIR,account=ALLOC_ACCOUNT,
