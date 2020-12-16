@@ -94,7 +94,7 @@ class Lsf:
         self.hpc_type = None
         if which('bsub') is not None:
             self.hpc_type = "lsf"
-        if which('srun') is not None:
+        if which('sbatch') is not None:
             self.hpc_type = "slurm"
 
     def config(self,outdir=OUTDIR,account=ALLOC_ACCOUNT,
@@ -134,14 +134,14 @@ class Lsf:
                     submit_command = "bsub -W %s:00 -n %s -q %s -P %s -J %s -M %s -R \"span[ptile=%s]\" -e %s/%s.OU -o %s/%s.OU < %s" % \
                                      (self.walltime,self.cpu,self.queue,self.account,name,self.memory*1000,self.cpu,self.outdir,name,self.outdir,name,command)
                 elif self.hpc_type == "slurm":
-                    submit_command = "srun --time %s:00:00 -c %s -p %s -A %s -J %s --mem-per-cpu %sG -e %s/%s.OU -o %s/%s.OU < %s" % \
+                    submit_command = "sbatch --time %s:00:00 -c %s -p %s -A %s -J %s --mem-per-cpu %sG -e %s/%s.OU -o %s/%s.OU < %s" % \
                                      (self.walltime,self.cpu,self.queue,self.account,name,self.memory,self.outdir,name,self.outdir,name,command)
             else:
                 if self.hpc_type == "lsf":
                     submit_command = "bsub -W %s:00 -n %s -q %s -P %s -J %s -M %s -R \"span[ptile=%s]\" -e %s/%s.OU -o %s/%s.OU \"%s\"" % \
                                      (self.walltime,self.cpu,self.queue,self.account,name,self.memory*1000,self.cpu,self.outdir,name,self.outdir,name,command)
                 elif self.hpc_type == "slurm":
-                    submit_command = "srun --time %s:00:00 -c %s -p %s -A %s -J %s --mem-per-cpu %sG -e %s/%s.OU -o %s/%s.OU \"%s\"" % \
+                    submit_command = "sbatch --time %s:00:00 -c %s -p %s -A %s -J %s --mem-per-cpu %sG -e %s/%s.OU -o %s/%s.OU \"%s\"" % \
                                      (self.walltime,self.cpu,self.queue,self.account,name,self.memory,self.outdir,name,self.outdir,name,command)
             #print submit_command
             job = Job(name,command)
